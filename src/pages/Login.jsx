@@ -1,23 +1,14 @@
-import React from 'react'
-import { useHistory,useLocation } from 'react-router-dom'
-import {fakeAuth} from '../services/auth'
-
+import React from 'react';
+import { AuthService } from '../services/auth';
+import LoginForm from '../components/LoginForm';
 
 export default function Login() {
-    let history = useHistory();
-    let location = useLocation();
-  
-    let { from } = location.state || { from: { pathname: "/" } };
-    let login = () => {
-      fakeAuth.authenticate(() => {
-        history.replace(from);
-      });
-    };
-  
-    return (
-      <div>
-        <p>You must log in to view the page at {from.pathname}</p>
-        <button onClick={login}>Log in</button>
-      </div>
-    );
-  }
+  const authService = new AuthService();
+  return (
+    <div>
+      {!authService.isAuthenticated ? (
+        <LoginForm/>
+      ) : null}
+    </div>
+  );
+}
