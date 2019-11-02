@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthService } from '../services/auth';
+import { AuthService } from '../services/Auth';
 import { Route, Redirect } from 'react-router-dom';
 
 export default function PrivateRoute({ children, ...rest }) {

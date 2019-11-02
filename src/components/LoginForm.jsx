@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthService } from '../services/auth';
+import { AuthService } from '../services/Auth';
 
 export default class Loginform extends React.Component {
   constructor(props) {
