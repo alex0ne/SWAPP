@@ -1,15 +1,16 @@
 import React from 'react';
-import EpisodesService from '../services/Episodes';
+import { Link } from 'react-router-dom';
+import Api from '../services/Api';
 
 export default class Episodes extends React.Component {
   state = {
     episodes: []
   };
 
-  episodesService = new EpisodesService();
+  api = new Api();
 
   async componentDidMount() {
-    const episodes = await this.episodesService.getEpisodes();
+    const episodes = await this.api.getEpisodes();
     this.setState({ episodes });
   }
 
@@ -19,9 +20,17 @@ export default class Episodes extends React.Component {
         Episodes page
         {this.state.episodes.map(episode => (
           <li key={episode.node.episodeId}>
-            episode: {episode.node.episodeId} <br />
-            title: {episode.node.title} <br />
-            <img width='300px' src={episode.node.image} alt={episode.node.title} />
+            <Link to={`/episodes/${episode.node.id}`}>
+              <img
+                width='300px'
+                src={episode.node.image}
+                alt={episode.node.title}
+              />{' '}
+              <br />
+              episode: {episode.node.episodeId} <br />
+              title: {episode.node.title} <br />
+              description: {episode.node.openingCrawl} <br />
+            </Link>
           </li>
         ))}
       </div>
