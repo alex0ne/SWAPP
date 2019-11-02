@@ -4,7 +4,7 @@
   "private": true,
   "prettier": {
     "tabWidth": 2,
-    "printWidth": 120,
+    "printWidth": 80,
     "singleQuote": true,
     "jsxSingleQuote": true,
     "semi": true,

@@ -33,7 +33,9 @@ export default class EpisodesService {
         }
       `
     });
-    return response.data.allEpisodes.edges.sort((a, b) => a.node.episodeId - b.node.episodeId);
+    return response.data.allEpisodes.edges.sort(
+      (a, b) => a.node.episodeId - b.node.episodeId
+    );
   };
   getEpisode = async episodeId => {
     const response = await this.client.query({
@@ -77,7 +79,7 @@ export default class EpisodesService {
             image
             director
             releaseDate
-            people(first:${currentCharactersCount+5}) {
+            people(first:${currentCharactersCount + 5}) {
               edges {
                 node {
                   id
@@ -94,22 +96,99 @@ export default class EpisodesService {
       `
     });
     return response.data.episode;
-  }
+  };
   getCharacters = async () => {
     const response = await this.client.query({
       query: gql`
         query {
-          allPeople(first: 5) {
+          allPeople(first: 12) {
             edges {
               node {
                 id
                 name
+                image
+              }
+            }
+            pageInfo {
+              hasNextPage
+            }
+          }
+        }
+      `
+    });
+    return response.data.allPeople;
+  };
+  loadMoreCharacters = async currentCharactersCount => {
+    const response = await this.client.query({
+      query: gql`
+        query {
+          allPeople(first: ${currentCharactersCount + 12}) {
+            edges {
+              node {
+                id
+                name
+                image
+              }
+            }
+            pageInfo{
+              hasNextPage
+            }
+          }
+        }
+      `
+    });
+    return response.data.allPeople;
+  };
+  getCharacter = async characterId => {
+    const response = await this.client.query({
+      query: gql`
+        query {
+          person(id:"${characterId}") {
+            id
+            name
+            height
+            mass
+            image
+            species {
+              id
+              name
+            }
+            homeworld{
+              name
+            }
+            starships(first:100){
+              edges{
+                node{
+                  id
+                  name
+                  image
+                }
               }
             }
           }
         }
       `
     });
-    return response;
+    return response.data.person;
+  };
+  getStarship = async starshipId => {
+    const response = await this.client.query({
+      query: gql`
+        query {
+          starship(id: "${starshipId}") {
+            id
+            name
+            starshipClass
+            cost
+            crew
+            maxAtmosphericSpeed
+            hyperdriveRating
+            model
+            image
+          }
+        }
+      `
+    });
+    return response.data.starship;
   };
 }

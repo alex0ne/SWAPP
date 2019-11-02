@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Switch,
-  Route,
-} from "react-router-dom";
+import { Switch, Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
 
@@ -11,35 +8,38 @@ import CharacterPage from '../pages/Character';
 import CharactersPage from '../pages/Characters';
 import EpisodePage from '../pages/Episode';
 import EpisodesPage from '../pages/Episodes';
+import StarshipPage from '../pages/Starship';
 
 export default function Routes() {
-    return (
-      <Switch>
+  return (
+    <Switch>
+      <Route path='/login'>
+        <LoginPage />
+      </Route>
 
-        <Route path="/login">
-          <LoginPage />
-        </Route>
+      <PrivateRoute exact path='/'>
+        <EpisodesPage />
+      </PrivateRoute>
 
-        <PrivateRoute exact path="/">
-          <EpisodesPage />
-        </PrivateRoute>
+      <PrivateRoute exact path='/episodes'>
+        <EpisodesPage />
+      </PrivateRoute>
 
-        <PrivateRoute exact path="/episodes">
-          <EpisodesPage />
-        </PrivateRoute>
+      <PrivateRoute path='/episodes/:episodeId'>
+        <EpisodePage />
+      </PrivateRoute>
 
-        <PrivateRoute path="/episodes/:id">
-          <EpisodePage />
-        </PrivateRoute>
+      <PrivateRoute exact path='/characters'>
+        <CharactersPage />
+      </PrivateRoute>
 
-        <PrivateRoute exact path="/characters">
-          <CharactersPage />
-        </PrivateRoute>
+      <PrivateRoute path='/characters/:characterId'>
+        <CharacterPage />
+      </PrivateRoute>
 
-        <PrivateRoute path="/characters/:characterId">
-          <CharacterPage />
-        </PrivateRoute>
-
-      </Switch>
-    )
+      <PrivateRoute path='/starships/:starshipId'>
+        <StarshipPage />
+      </PrivateRoute>
+    </Switch>
+  );
 }
