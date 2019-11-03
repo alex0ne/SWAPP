@@ -1,5 +1,6 @@
 import React from 'react';
 import { AuthService } from '../services/Auth';
+import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
 
 export default class Loginform extends React.Component {
   constructor(props) {
@@ -31,20 +32,42 @@ export default class Loginform extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
-
     this.signIn();
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>Email Address:</label> <br />
-        <input type='email' name='email' value={this.state.value} onChange={this.handleChange} required /> <br />
-        <label>Password:</label> <br />
-        <input type='password' name='password' value={this.state.value} onChange={this.handleChange} required /> <br />
-        <input type='submit' value='Log in' />
-      </form>
+      <div style={{ textAlign: 'right' }}>
+        <Card body={true} style={{backgroundColor: '#E8EAED'}} >
+          <CardBody>
+            <Form onSubmit={this.handleSubmit}>
+              <FormGroup>
+                <Input
+                  bsSize='sm'
+                  type='email'
+                  name='email'
+                  placeholder='email'
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  required
+                />
+              </FormGroup>
+              <FormGroup>
+                <Input
+                  bsSize='sm'
+                  type='password'
+                  name='password'
+                  placeholder='password'
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  required
+                />
+              </FormGroup>
+              <Button size='md' style={{backgroundColor:'black', color:'yellow', fontWeight: '900'}} type='submit'>Login</Button>
+            </Form>
+          </CardBody>
+        </Card>
+      </div>
     );
   }
 }

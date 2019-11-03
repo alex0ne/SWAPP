@@ -9,8 +9,8 @@ function App() {
   const authService = new AuthService();
   return (
     <Router>
-      <div>
-        {authService.isAuthenticated ? <Navigation /> : <p>You are not logged in.</p>}
+      <div className='App'>
+        {authService.isAuthenticated ? <Navigation /> : null}
         <Routes />
       </div>
     </Router>
