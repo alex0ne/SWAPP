@@ -3,7 +3,6 @@ import { AuthService } from '../services/Auth';
 import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
 import { withTheme } from 'styled-components';
 
-
 class Loginform extends React.Component {
   constructor(props) {
     super(props);
@@ -38,9 +37,21 @@ class Loginform extends React.Component {
   }
 
   render() {
+    const theme = this.props.theme.styles;
+    const inputStyles = {
+      backgroundColor: `${theme.inputBackground}`,
+      color: `${theme.inputFontColor}`,
+      borderColor: `${theme.inputBorderColor}`
+    };
+    const cardStyles = { backgroundColor: `${theme.cardBackground}` };
+    const loginButtonStyles = {
+      backgroundColor: `${theme.solidButtonBackground}`,
+      color: `${theme.solidButtonFontColor}`,
+      fontWeight: '900'
+    };
     return (
       <div style={{ textAlign: 'right' }}>
-        <Card body={true} style={{backgroundColor: `${this.props.theme.cardBackground}`}} >
+        <Card body={true} style={cardStyles}>
           <CardBody>
             <Form onSubmit={this.handleSubmit}>
               <FormGroup>
@@ -52,11 +63,7 @@ class Loginform extends React.Component {
                   value={this.state.value}
                   onChange={this.handleChange}
                   required
-                  style={{
-                    backgroundColor: `${this.props.theme.inputBackground}`,
-                    color: `${this.props.theme.inputFontColor}`,
-                    borderColor: `${this.props.theme.inputBorderColor}`
-                  }}
+                  style={inputStyles}
                 />
               </FormGroup>
               <FormGroup>
@@ -68,18 +75,12 @@ class Loginform extends React.Component {
                   value={this.state.value}
                   onChange={this.handleChange}
                   required
-                  style={{
-                    backgroundColor: `${this.props.theme.inputBackground}`,
-                    color: `${this.props.theme.inputFontColor}`,
-                    borderColor: `${this.props.theme.inputBorderColor}`
-                  }}
+                  style={inputStyles}
                 />
               </FormGroup>
-              <Button size='md' style={{
-                backgroundColor:`${this.props.theme.solidButtonBackground}`, 
-                color:`${this.props.theme.solidButtonFontColor}`, 
-                fontWeight: '900'
-                }} type='submit'>Login</Button>
+              <Button size='md' style={loginButtonStyles} type='submit'>
+                Login
+              </Button>
             </Form>
           </CardBody>
         </Card>
@@ -87,4 +88,4 @@ class Loginform extends React.Component {
     );
   }
 }
-export default withTheme(Loginform)
+export default withTheme(Loginform);
