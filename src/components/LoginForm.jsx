@@ -1,7 +1,9 @@
 import React from 'react';
 import { AuthService } from '../services/Auth';
+import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
+import { withTheme } from 'styled-components';
 
-export default class Loginform extends React.Component {
+class Loginform extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,20 +33,59 @@ export default class Loginform extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
-
     this.signIn();
   }
 
   render() {
+    const theme = this.props.theme.styles;
+    const inputStyles = {
+      backgroundColor: `${theme.inputBackground}`,
+      color: `${theme.inputFontColor}`,
+      borderColor: `${theme.inputBorderColor}`
+    };
+    const cardStyles = { backgroundColor: `${theme.cardBackground}` };
+    const loginButtonStyles = {
+      backgroundColor: `${theme.solidButtonBackground}`,
+      color: `${theme.solidButtonFontColor}`,
+      fontWeight: '900'
+    };
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>Email Address:</label> <br />
-        <input type='email' name='email' value={this.state.value} onChange={this.handleChange} required /> <br />
-        <label>Password:</label> <br />
-        <input type='password' name='password' value={this.state.value} onChange={this.handleChange} required /> <br />
-        <input type='submit' value='Log in' />
-      </form>
+      <div style={{ textAlign: 'right' }}>
+        <Card body={true} style={cardStyles}>
+          <CardBody>
+            <Form onSubmit={this.handleSubmit}>
+              <FormGroup>
+                <Input
+                  bsSize='sm'
+                  type='email'
+                  name='email'
+                  placeholder='email'
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  required
+                  style={inputStyles}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Input
+                  bsSize='sm'
+                  type='password'
+                  name='password'
+                  placeholder='password'
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  required
+                  style={inputStyles}
+                />
+              </FormGroup>
+              <Button size='md' style={loginButtonStyles} type='submit'>
+                Login
+              </Button>
+            </Form>
+          </CardBody>
+        </Card>
+      </div>
     );
   }
 }
+export default withTheme(Loginform);
