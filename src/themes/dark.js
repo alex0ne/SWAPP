@@ -9,4 +9,13 @@ export const darkTheme = {
     inputBackground: '#FFF',
     inputBorderColor: '#3C4858',
     inputFontColor: '#273444',
+    outlineButtonsBackground: '#333',
+    outlineButtonsBordercolor: '#3C4858',
+    appBarBackground: '#333',
+    appBarBorderColor: '#3C4858',
+    appBarFontColor: '#4BD5EE',
+    primaryHeadingFontColor: '#FFE300',
+    radarFontColor: '#FFE300',
+    radarBackground: '#000',
+    radarGrid: '#333',
   };
