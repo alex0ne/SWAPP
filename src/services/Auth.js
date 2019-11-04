@@ -7,7 +7,6 @@ export class AuthService {
     const client = new ApolloClient({
       uri: 'http://softuni-swapp-212366186.eu-west-1.elb.amazonaws.com/graphql'
     });
-    // email: "demo@st6.io", password: "demo1234"
     client
       .mutate({
         mutation: gql`
@@ -21,6 +20,17 @@ export class AuthService {
       .then(result => {
         sessionStorage.token = result.data.signIn.token;
         window.location = '/episodes';
+      })
+      .catch(err => {
+        if (err.networkError) {
+          const errorMessage = err.networkError.message;
+          console.error(errorMessage);
+          // throw new Error(errorMessage);
+        } else {
+          const errorMessage = err.graphQLErrors[0].message;
+          console.error(errorMessage);
+          // throw new Error(errorMessage);
+        }
       });
   }
   signout() {

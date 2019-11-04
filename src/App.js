@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Navigation from './shared/Navigation';
+import Navigation from './common/Navigation';
 import Routes from './routes';
 import { AuthService } from './services/Auth';
 import { ThemeProvider } from 'styled-components';
