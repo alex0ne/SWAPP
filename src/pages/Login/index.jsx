@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import LoginForm from '../components/LoginForm';
+import LoginForm from './LoginForm';
 import { ThemeContext } from 'styled-components';
 
 export default function Login() {

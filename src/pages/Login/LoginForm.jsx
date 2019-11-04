@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthService } from '../services/Auth';
+import { AuthService } from '../../services/Auth';
 import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
 import { withTheme } from 'styled-components';
 

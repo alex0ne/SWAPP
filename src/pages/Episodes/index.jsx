@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Api from '../services/Api';
+import Api from '../../services/Api';
 
 export default class Episodes extends React.Component {
   state = {
