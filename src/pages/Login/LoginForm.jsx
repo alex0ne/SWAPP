@@ -9,7 +9,8 @@ class Loginform extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -18,8 +19,14 @@ class Loginform extends React.Component {
 
   authService = new AuthService();
 
-  signIn = () => {
-    this.authService.signIn(this.state.email, this.state.password);
+  signIn = async () => {
+    const response = await this.authService.signIn(
+      this.state.email,
+      this.state.password
+    );
+    if (response.error) {
+      this.setState({ error: response.error });
+    }
   };
 
   handleChange(event) {
@@ -44,49 +51,54 @@ class Loginform extends React.Component {
       color: `${theme.inputFontColor}`,
       borderColor: `${theme.inputBorderColor}`
     };
-    const cardStyles = { backgroundColor: `${theme.cardBackground}` };
+    const cardStyles = {
+      backgroundColor: `${theme.cardBackground}`,
+      textAlign: 'right'
+    };
     const loginButtonStyles = {
       backgroundColor: `${theme.solidButtonBackground}`,
       color: `${theme.solidButtonFontColor}`,
       fontWeight: '900'
     };
+    const errorMessageStyles = {
+      textAlign: 'left', color: 'tomato'
+    }
     return (
       <ErrorBoundary>
-        <div style={{ textAlign: 'right' }}>
-          <Card body={true} style={cardStyles}>
-            <CardBody>
-              <Form onSubmit={this.handleSubmit}>
-                <FormGroup>
-                  <Input
-                    bsSize='sm'
-                    type='email'
-                    name='email'
-                    placeholder='email'
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    required
-                    style={inputStyles}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Input
-                    bsSize='sm'
-                    type='password'
-                    name='password'
-                    placeholder='password'
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    required
-                    style={inputStyles}
-                  />
-                </FormGroup>
-                <Button size='md' style={loginButtonStyles} type='submit'>
-                  Login
-                </Button>
-              </Form>
-            </CardBody>
-          </Card>
-        </div>
+        <Card body={true} style={cardStyles}>
+          <CardBody>
+            {this.state.error && <p style={errorMessageStyles}>{this.state.error}</p>}
+            <Form onSubmit={this.handleSubmit}>
+              <FormGroup>
+                <Input
+                  bsSize='sm'
+                  type='email'
+                  name='email'
+                  placeholder='email'
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  required
+                  style={inputStyles}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Input
+                  bsSize='sm'
+                  type='password'
+                  name='password'
+                  placeholder='password'
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  required
+                  style={inputStyles}
+                />
+              </FormGroup>
+              <Button size='md' style={loginButtonStyles} type='submit'>
+                Login
+              </Button>
+            </Form>
+          </CardBody>
+        </Card>
       </ErrorBoundary>
     );
   }
