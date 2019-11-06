@@ -10,16 +10,17 @@ import { darkTheme } from './themes/dark';
 
 function App() {
   const authService = new AuthService();
-  const stored = localStorage.getItem("isDarkMode");
+  const stored = localStorage.getItem('isDarkMode');
   const [isDarkMode, setIsDarkMode] = useState(
-    stored === "true" ? true : false
+    stored === 'true' ? true : false
   );
   const swapTheme = () => {
     setIsDarkMode(!isDarkMode);
-    localStorage.setItem("isDarkMode", !isDarkMode);
-  }
+    localStorage.setItem('isDarkMode', !isDarkMode);
+  };
   return (
-    <ThemeProvider theme={{ styles: isDarkMode ? darkTheme : lightTheme, swapTheme }}>
+    <ThemeProvider
+      theme={{ styles: isDarkMode ? darkTheme : lightTheme, swapTheme }}>
       <Router>
         <div className='App'>
           {authService.isAuthenticated ? <Navigation /> : null}

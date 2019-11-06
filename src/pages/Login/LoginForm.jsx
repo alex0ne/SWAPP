@@ -58,7 +58,8 @@ class Loginform extends React.Component {
     const loginButtonStyles = {
       backgroundColor: `${theme.solidButtonBackground}`,
       color: `${theme.solidButtonFontColor}`,
-      fontWeight: '900'
+      fontFamily: 'SF Distant Galaxy',
+      fontSize: '0.9rem'
     };
     const errorMessageStyles = {
       textAlign: 'left', color: 'tomato'

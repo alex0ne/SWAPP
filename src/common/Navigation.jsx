@@ -32,7 +32,7 @@ export default function Navigation() {
   const logoutIconStyles = { width: 17, color: theme.appBarFontColor };
   return (
     <div>
-      <Navbar style={navbarStyles} expand='md'>
+      <Navbar style={navbarStyles} expand={true}>
         <NavbarBrand
           onClick={() => themeContext.swapTheme()}
           style={navBarBrandStyles}>
