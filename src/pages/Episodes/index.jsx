@@ -52,7 +52,7 @@ class Episodes extends React.Component {
       <div style={episodesContainerStyles}>
         <div style={episodesWrapperStyles}>
           {this.state.episodes.map(episode => (
-            <Card style={episodeCardStyles}>
+            <Card key={episode.node.id} style={episodeCardStyles}>
               <Link
                 style={episodeLinkStyles}
                 to={`/episodes/${episode.node.id}`}>
