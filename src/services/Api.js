@@ -191,4 +191,29 @@ export default class EpisodesService {
     });
     return response.data.starship;
   };
+  getAllStarships = async () => {
+    const response = await this.client.query({
+      query: gql`
+        query {
+          allStarships(first: 100) {
+            edges {
+              node {
+                id
+                name
+                model
+                image
+                starshipClass
+                cost
+                maxAtmosphericSpeed
+                maxMLPerHour
+                hyperdriveRating
+                crew
+              }
+            }
+          }
+        }
+      `
+    });
+    return response.data.allStarships.edges;
+  };
 }
