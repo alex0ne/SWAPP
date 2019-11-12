@@ -2,7 +2,6 @@ import React from 'react';
 import { AuthService } from '../../services/Auth';
 import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
 import { withTheme } from 'styled-components';
-import ErrorBoundary from '../../common/ErrorBoundary';
 
 class Loginform extends React.Component {
   constructor(props) {
@@ -65,7 +64,6 @@ class Loginform extends React.Component {
       textAlign: 'left', color: 'tomato'
     }
     return (
-      <ErrorBoundary>
         <Card body={true} style={cardStyles}>
           <CardBody>
             {this.state.error && <p style={errorMessageStyles}>{this.state.error}</p>}
@@ -100,7 +98,6 @@ class Loginform extends React.Component {
             </Form>
           </CardBody>
         </Card>
-      </ErrorBoundary>
     );
   }
 }
