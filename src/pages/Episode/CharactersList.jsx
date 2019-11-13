@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import { Link } from 'react-router-dom';
-
 import {
   Card,
   CardImg,
@@ -12,11 +11,9 @@ import {
   Col
 } from 'reactstrap';
 
-export default function CharactersList(props) {
-    console.log(props);
-    
+export default function CharactersList(props) {    
   const themeContext = useContext(ThemeContext);
-  const theme = themeContext.styles;
+  const theme = themeContext.styles;  
   const { people } = props.episode;
   const cardImageStyles = { borderRadius: '8px' };
   const cardTitleStyles = { color: theme.primaryHeadingFontColor };
@@ -31,7 +28,7 @@ export default function CharactersList(props) {
   const charactersContainerStyles = {
     backgroundColor: theme.defaultBackground,
     height: '100%',
-    paddingBottom: '11rem'
+    paddingBottom: '11rem',
   };
   const charactersWrapperStyles = {
     maxWidth: 810,
