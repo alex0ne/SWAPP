@@ -3,7 +3,7 @@ import { ThemeContext } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody, Row, Col } from 'reactstrap';
 
-export default function StarShipsList(props) {
+export default function StarshipsList(props) {
   const themeContext = useContext(ThemeContext);
   const theme = themeContext.styles;
   const starships = props.starships;
