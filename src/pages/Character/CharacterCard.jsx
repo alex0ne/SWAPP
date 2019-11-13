@@ -5,33 +5,29 @@ import { Card, CardTitle, CardImg, CardText, CardBody } from 'reactstrap';
 export default function CharacterCard(props) {
   const themeContext = useContext(ThemeContext);
   const theme = themeContext.styles;
-  const {
-    name,
-    image,
-    height,
-    mass,
-    species,
-    homeworld
-  } = props.character;
+  const { name, image, height, mass, species, homeworld } = props.character;
   const cardDescriptionValue = { color: theme.primaryHeadingFontColor };
   const cardDescriptionKey = { color: theme.solidButtonBackground };
+  const characterCardStyles = {
+    borderRadius: '8px',
+    background: theme.cardBackground
+  };
+  const characterCardTitleStyles = {
+    fontFamily: 'SF Distant Galaxy',
+    color: theme.primaryHeadingFontColor
+  };
+  const characterCardTextStyles = {
+    textAlign: 'left',
+    marginTop: '1rem',
+    color: ''
+  };
   return (
     <div>
-      <Card
-        style={{
-          borderRadius: '8px',
-          background: theme.cardBackground
-        }}>
+      <Card style={characterCardStyles}>
         <CardBody>
-          <CardTitle
-            style={{
-              fontFamily: 'SF Distant Galaxy',
-              color: theme.primaryHeadingFontColor
-            }}>
-            {name}
-          </CardTitle>
+          <CardTitle style={characterCardTitleStyles}>{name}</CardTitle>
           <CardImg src={image} alt={name} />
-          <CardText style={{ textAlign: 'left', marginTop: '1rem', color: '' }}>
+          <CardText style={characterCardTextStyles}>
             <span style={cardDescriptionKey}>Height:</span>{' '}
             <span style={cardDescriptionValue}>{height}</span> <br />
             <span style={cardDescriptionKey}> Weight:</span>{' '}

@@ -17,28 +17,26 @@ export default function StarshipCard(props) {
 
   const cardDescriptionValue = { color: theme.primaryHeadingFontColor };
   const cardDescriptionKey = { color: theme.solidButtonBackground };
+  const starshipCardStyles = {
+    borderRadius: '8px',
+    background: theme.cardBackground
+  };
+  const starshipCardTitleStyles = {
+    fontFamily: 'SF Distant Galaxy',
+    color: theme.primaryHeadingFontColor
+  };
+  const starshipCardTextStyles = {
+    textAlign: 'left',
+    marginTop: '1rem',
+    color: ''
+  };
   return (
     <div>
-      <Card
-        style={{
-          borderRadius: '8px',
-          background: theme.cardBackground
-        }}>
+      <Card style={starshipCardStyles}>
         <CardBody>
-          <CardTitle
-            style={{
-              fontFamily: 'SF Distant Galaxy',
-              color: theme.primaryHeadingFontColor
-            }}>
-            {name}
-          </CardTitle>
+          <CardTitle style={starshipCardTitleStyles}>{name}</CardTitle>
           <CardImg src={image} alt={name} />
-          <CardText
-            style={{
-              textAlign: 'left',
-              marginTop: '1rem',
-              color: ''
-            }}>
+          <CardText style={starshipCardTextStyles}>
             <span style={cardDescriptionKey}>Class:</span>{' '}
             <span style={cardDescriptionValue}>{starshipClass}</span> <br />
             <span style={cardDescriptionKey}>Cost:</span>{' '}

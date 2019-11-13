@@ -7,38 +7,37 @@ export default function StarShipsList(props) {
   const themeContext = useContext(ThemeContext);
   const theme = themeContext.styles;
   const starships = props.starships;
+  const starshipsListTitleStyles = {
+    fontFamily: 'SF Distant Galaxy',
+    color: theme.solidButtonBackground,
+    marginTop: '1rem'
+  };
+  const starshipsListHrStyles = { borderColor: theme.defaultFontColor };
+  const charactersCardStyles = {
+    margin: 'auto',
+    marginTop: '0.5rem',
+    marginBottom: '0.5rem',
+    borderRadius: '8px',
+    borderColor: theme.cardBordercolor,
+    backgroundColor: theme.cardBackground,
+    fontFamily: 'SF Distant Galaxy',
+    textAlign: 'center',
+    display: 'inline-block',
+    verticalAlign: 'middle'
+  };
+  const charactersLinkStyles = { textDecoration: 'none' };
+  const cardImageStyles = { borderRadius: '8px' };
+  const cardTitleStyles = {
+    color: theme.primaryHeadingFontColor,
+    textSize: '0.9rem'
+  };
   return (
     <div>
-      <h5
-        style={{
-          fontFamily: 'SF Distant Galaxy',
-          color: theme.solidButtonBackground,
-          marginTop: '1rem'
-        }}>
-        Piloted Starsships
-      </h5>
-      <hr style={{ borderColor: theme.defaultFontColor }} />
+      <h5 style={starshipsListTitleStyles}>Piloted Starsships</h5>
+      <hr style={starshipsListHrStyles} />
       {starships &&
         starships.map(starship => {
           const { id, name, image } = starship.node;
-          const charactersCardStyles = {
-            margin: 'auto',
-            marginTop: '0.5rem',
-            marginBottom: '0.5rem',
-            borderRadius: '8px',
-            borderColor: theme.cardBordercolor,
-            backgroundColor: theme.cardBackground,
-            fontFamily: 'SF Distant Galaxy',
-            textAlign: 'center',
-            display: 'inline-block',
-            verticalAlign: 'middle'
-          };
-          const charactersLinkStyles = { textDecoration: 'none' };
-          const cardImageStyles = { borderRadius: '8px' };
-          const cardTitleStyles = {
-            color: theme.primaryHeadingFontColor,
-            textSize: '0.9rem'
-          };
           return (
             <Card key={id} style={charactersCardStyles}>
               <Link style={charactersLinkStyles} to={`/starships/${id}`}>

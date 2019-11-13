@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import { Link } from 'react-router-dom';
-
 import {
   Card,
   CardImg,
@@ -13,8 +12,6 @@ import {
 } from 'reactstrap';
 
 export default function CharactersList(props) {
-    console.log(props);
-    
   const themeContext = useContext(ThemeContext);
   const theme = themeContext.styles;
   const { people } = props.episode;
