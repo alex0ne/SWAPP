@@ -41,7 +41,7 @@ export default function StarshipChart(props) {
               data={props.data}
               keys={[`current`]}
               indexBy='value'
-              maxValue={100}
+              maxValue={10}
               margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
               curve='linearClosed'
               borderWidth={2}

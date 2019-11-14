@@ -7,20 +7,20 @@ import StarshipCard from './StarshipCard';
 
 class Starship extends React.Component {
   state = {
-    starship: {},
-    data: []
+    currentStarship: {},
+    chartData: []
   };
   api = new Api();
   async componentDidMount() {
     const locationArray = window.location.pathname.split('/');
     const starshipId = locationArray[locationArray.length - 1];
-    const starship = await this.api.getStarship(starshipId);
+    const currentStarship = await this.api.getStarship(starshipId);
     const allStarships = await this.api.getAllStarships();
-    const chartData = allStarships
+    const starshipsInSameClass = allStarships
       .map(item => {
         return item.node;
       })
-      .filter(item => item.starshipClass === starship.starshipClass)
+      .filter(item => item.starshipClass === currentStarship.starshipClass)
       .map(item => {
         return {
           id: item.id,
@@ -31,86 +31,82 @@ class Starship extends React.Component {
           crew: item.crew
         };
       });
-
-    const maxCostValue = Math.max(...chartData.map(item => item.cost));
-    const minCostValue = Math.min(...chartData.map(item => item.cost));
-    let costValues = {
-      value: 'Cost',
-      min: Number(minCostValue.toString().slice(0, 2)),
-      max: Number(maxCostValue.toString().slice(0, 2)),
-      current: starship.cost ? Number(starship.cost.toString().slice(0, 2)) : 0
-    };
-
-    const maxAtmosphericSpeedValue = Math.max(
-      ...chartData.map(item => item.maxAtmosphericSpeed)
+    const chartData = this.generateChartData(
+      starshipsInSameClass,
+      currentStarship
     );
-    const minAtmosphericSpeedValue = Math.min(
-      ...chartData.map(item => item.maxAtmosphericSpeed)
-    );
-    let maxAtmosphericSpeedValues = {
-      value: 'Max Atm. Speed',
-      min: Number(minAtmosphericSpeedValue.toString().slice(0, 2)),
-      max: Number(maxAtmosphericSpeedValue.toString().slice(0, 2)),
-      current: starship.maxAtmosphericSpeed
-        ? Number(starship.maxAtmosphericSpeed.toString().slice(0, 2))
-        : 0
-    };
-
-    const maxMLPerHourValue = Math.max(
-      ...chartData.map(item => item.maxMLPerHour)
-    );
-    const minMLPerHourValue = Math.min(
-      ...chartData.map(item => item.maxMLPerHour)
-    );
-    let maxMLPerHour = {
-      value: 'Max ML/h',
-      min: Number(minMLPerHourValue.toString().slice(0, 2)),
-      max: Number(maxMLPerHourValue.toString().slice(0, 2)),
-      current: starship.maxMLPerHour
-        ? Number(starship.maxMLPerHour.toString().slice(0, 2))
-        : 0
-    };
-
-    const maxHyperdriveRatingValue = Math.max(
-      ...chartData.map(item => item.hyperdriveRating)
-    );
-    const minHyperdriveRatingValue = Math.min(
-      ...chartData.map(item => item.hyperdriveRating)
-    );
-    let hyperdriveRating = {
-      value: 'HyperD Rat.',
-      min: Number(minHyperdriveRatingValue.toString().slice(0, 2)),
-      max: Number(maxHyperdriveRatingValue.toString().slice(0, 2)),
-      current: starship.maxAtmosphericSpeed
-        ? Number(starship.hyperdriveRating.toString().slice(0, 2))
-        : 0
-    };
-
-    const maxCrewValue = Math.max(...chartData.map(item => item.crew));
-    const minCrewalue = Math.min(...chartData.map(item => item.crew));
-    let crew = {
-      value: 'Crew',
-      min: Number(minCrewalue.toString().slice(0, 2)),
-      max: Number(maxCrewValue.toString().slice(0, 2)),
-      current: starship.crew ? Number(starship.crew.toString().slice(0, 2)) : 0
-    };
-
-    const data = [
-      maxAtmosphericSpeedValues,
-      maxMLPerHour,
-      hyperdriveRating,
-      crew,
-      costValues
-    ];
 
     this.setState({
-      starship,
-      data
+      currentStarship,
+      chartData
     });
   }
 
+  generateChartData = (starshipsInSameClass, currentStarship) => {
+    const costValues = this.calculateValues(
+      starshipsInSameClass,
+      currentStarship,
+      'cost'
+    );
+    const maxAtmosphericSpeedValues = this.calculateValues(
+      starshipsInSameClass,
+      currentStarship,
+      'maxAtmosphericSpeed'
+    );
+    const maxMLPerHourValues = this.calculateValues(
+      starshipsInSameClass,
+      currentStarship,
+      'maxMLPerHour'
+    );
+    const hyperdriveRatingValues = this.calculateValues(
+      starshipsInSameClass,
+      currentStarship,
+      'hyperdriveRating'
+    );
+    const crewValues = this.calculateValues(
+      starshipsInSameClass,
+      currentStarship,
+      'crew'
+    );
+
+    return [
+      { ...maxAtmosphericSpeedValues, value: 'Max Atm. Speed' },
+      { ...maxMLPerHourValues, value: 'Max ML/h' },
+      { ...hyperdriveRatingValues, value: 'HyperD Rat.' },
+      { ...crewValues, value: 'Crew' },
+      { ...costValues, value: 'Cost' }
+    ];
+  };
+
+  calculateValues = (starshipsInSameClass, currentStarship, criteria) => {
+    const maxValue = Math.max(
+      ...starshipsInSameClass.map(item => item[criteria])
+    );
+    const minValue = Math.min(
+      ...starshipsInSameClass.map(item => item[criteria])
+    );
+
+    return {
+      min: 0,
+      max: 5,
+      current: currentStarship[criteria]
+        ? this.scaleDown(minValue, maxValue, currentStarship[criteria])
+        : 0
+    };
+  };
+
+  scaleDown = (min, max, current) => {
+    if (min !== max) {
+      const percent = (current - max) / (max - min);
+      const output = percent * (5 - 0) + 0;
+      return output;
+    } else {
+      return ((current - max) / (max - 0)) * (5 - 0) + 0;
+    }
+  };
+
   render() {
-    const { model, name } = this.state.starship;
+    const { model, name } = this.state.currentStarship;
     const theme = this.props.theme.styles;
     const starshipPageContainderStyles = {
       padding: '1rem',
@@ -130,6 +126,7 @@ class Starship extends React.Component {
       marginBottom: '2rem'
     };
     const starshipPageHrStyles = { borderColor: 'black' };
+
     return (
       <div>
         <div style={starshipPageContainderStyles}>
@@ -139,10 +136,10 @@ class Starship extends React.Component {
             <hr style={starshipPageHrStyles} />
             <Row>
               <Col md>
-                <StarshipCard starship={this.state.starship} />
+                <StarshipCard starship={this.state.currentStarship} />
               </Col>
               <Col md>
-                <StarshipChart data={this.state.data} />
+                <StarshipChart data={this.state.chartData} />
               </Col>
             </Row>
           </div>
