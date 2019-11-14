@@ -6,6 +6,8 @@ export default function EpisodeDescription(props) {
   const themeContext = useContext(ThemeContext);
   const theme = themeContext.styles;
   const { openingCrawl, episodeId, director, releaseDate } = props.episode;
+  const cardDescriptionKey = { color: theme.solidButtonBackground };
+  const cardDescriptionValue = { color: theme.primaryHeadingFontColor };
   const episodeDescriptionStyles = {
     maxWidth: 800,
     margin: 'auto',
@@ -25,9 +27,13 @@ export default function EpisodeDescription(props) {
         <Card key={episodeId} style={episodeDescriptionStyles}>
           <CardBody>
             <CardText style={cardTextStyles}>{openingCrawl}</CardText>
-            <CardText style={cardTextStyles}>Director: {director}</CardText>
             <CardText style={cardTextStyles}>
-              Relase Date: {releaseDate}
+              <span style={cardDescriptionKey}>Director: </span>
+              <span style={cardDescriptionValue}>{director}</span>
+            </CardText>
+            <CardText style={cardTextStyles}>
+              <span style={cardDescriptionKey}>Relase Date: </span>
+              <span style={cardDescriptionValue}>{releaseDate}</span>
             </CardText>
           </CardBody>
         </Card>
