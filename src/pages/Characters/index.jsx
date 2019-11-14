@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Api from '../../services/Api';
 import { withTheme } from 'styled-components';
+import Loading from '../../common/Loading';
 import {
   Card,
   CardImg,
@@ -71,7 +72,7 @@ class Characters extends React.Component {
       fontSize: '0.9rem',
       marginBottom: '7px'
     };
-    return (
+    return this.state.characters.edges ? (
       <div style={charactersContainerStyles}>
         <div style={charactersWrapperStyles}>
           {characters &&
@@ -110,7 +111,7 @@ class Characters extends React.Component {
             </Button>
           )}
       </div>
-    );
+    ): <Loading/>
   }
 }
 export default withTheme(Characters);

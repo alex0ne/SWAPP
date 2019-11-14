@@ -4,6 +4,7 @@ import { withTheme } from 'styled-components';
 import { Row, Col } from 'reactstrap';
 import CharacterCard from './CharacterCard';
 import StarshipsList from './StarshipsList';
+import Loading from '../../common/Loading';
 
 class Character extends React.Component {
   state = {
@@ -34,13 +35,10 @@ class Character extends React.Component {
       color: theme.primaryHeadingFontColor,
       marginBottom: '2rem'
     };
-    return (
+    return this.state.character.name ? (
       <div style={characterPageContainer}>
         <div style={characterPateWrapper}>
-          <h3
-            style={characterPageTitle}>
-            {name}
-          </h3>
+          <h3 style={characterPageTitle}>{name}</h3>
           <hr style={{ borderColor: 'black' }} />
           <Row>
             <Col md>
@@ -52,6 +50,8 @@ class Character extends React.Component {
           </Row>
         </div>
       </div>
+    ) : (
+      <Loading />
     );
   }
 }

@@ -4,6 +4,7 @@ import { withTheme } from 'styled-components';
 import { Row, Col } from 'reactstrap';
 import StarshipChart from './StarshipChart';
 import StarshipCard from './StarshipCard';
+import Loading from '../../common/Loading';
 
 class Starship extends React.Component {
   state = {
@@ -127,7 +128,7 @@ class Starship extends React.Component {
     };
     const starshipPageHrStyles = { borderColor: 'black' };
 
-    return (
+    return this.state.chartData.length > 0 ? (
       <div>
         <div style={starshipPageContainderStyles}>
           <div style={starshipPageWrapperStyles}>
@@ -145,6 +146,8 @@ class Starship extends React.Component {
           </div>
         </div>
       </div>
+    ) : (
+      <Loading />
     );
   }
 }

@@ -2,8 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Api from '../../services/Api';
 import { withTheme } from 'styled-components';
-
-import { Card, CardImg, CardTitle, CardText, CardBody } from 'reactstrap';
+import Loading from '../../common/Loading';
+import {
+  Card,
+  CardImg,
+  CardTitle,
+  CardText,
+  CardBody,
+} from 'reactstrap';
 
 class Episodes extends React.Component {
   state = {
@@ -48,7 +54,8 @@ class Episodes extends React.Component {
       fontFamily: 'SF Distant Galaxy'
     };
     const cardTextStyles = { color: theme.defaultFontColor };
-    return (
+
+    return this.state.episodes.length > 0 ? (
       <div style={episodesContainerStyles}>
         <div style={episodesWrapperStyles}>
           {this.state.episodes.map(episode => (
@@ -76,7 +83,7 @@ class Episodes extends React.Component {
           ))}
         </div>
       </div>
-    );
+    ) : <Loading/>
   }
 }
 

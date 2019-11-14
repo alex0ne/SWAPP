@@ -4,6 +4,7 @@ import { withTheme } from 'styled-components';
 import EpisodeHeader from './EpisodeHeader';
 import EpisodeDescription from './EpisodeDescription';
 import CharactersList from './CharactersList';
+import Loading from '../../common/Loading';
 
 class Episode extends React.Component {
   state = {
@@ -40,7 +41,7 @@ class Episode extends React.Component {
       padding: '1rem'
     };
 
-    return (
+    return this.state.episode.id ? (
       <div style={episodeContainerStyles}>
         <EpisodeHeader episode={this.state.episode} />
         <EpisodeDescription episode={this.state.episode} />
@@ -49,7 +50,7 @@ class Episode extends React.Component {
           loadMore={this.loadMoreCharacters}
         />
       </div>
-    );
+    ) : <Loading/>
   }
 }
 export default withTheme(Episode);
