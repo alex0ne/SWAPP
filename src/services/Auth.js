@@ -7,7 +7,7 @@ export class AuthService {
   error = '';
   async signIn(username, password) {
     const client = new ApolloClient({
-      uri: 'http://softuni-swapp-212366186.eu-west-1.elb.amazonaws.com/graphql'
+      uri: 'https://swapp.st6.io/graphql'
     });
     await client
       .mutate({

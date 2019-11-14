@@ -110,41 +110,33 @@ class Starship extends React.Component {
   }
 
   render() {
-    const {
-      model,
-      name,
-    } = this.state.starship;
-
+    const { model, name } = this.state.starship;
     const theme = this.props.theme.styles;
-
+    const starshipPageContainderStyles = {
+      padding: '1rem',
+      paddingTop: '3rem',
+      backgroundColor: theme.defaultBackground,
+      paddingBottom: '5rem',
+      color: theme.defaultFontColor
+    };
+    const starshipPageWrapperStyles = { maxWidth: '800px', margin: 'auto' };
+    const starshipPageTitle = {
+      fontFamily: 'SF Distant Galaxy',
+      color: theme.primaryHeadingFontColor
+    };
+    const starshipPageSubtitleStyles = {
+      fontFamily: 'SF Distant Galaxy',
+      color: theme.solidButtonBackground,
+      marginBottom: '2rem'
+    };
+    const starshipPageHrStyles = { borderColor: 'black' };
     return (
       <div>
-        <div
-          style={{
-            padding: '1rem',
-            paddingTop: '3rem',
-            backgroundColor: theme.defaultBackground,
-            paddingBottom: '5rem',
-            color: theme.defaultFontColor
-          }}>
-          <div style={{ maxWidth: '800px', margin: 'auto' }}>
-            <h3
-              style={{
-                fontFamily: 'SF Distant Galaxy',
-                color: theme.primaryHeadingFontColor
-              }}>
-              {name}
-            </h3>
-            <h5
-              style={{
-                fontFamily: 'SF Distant Galaxy',
-                color: theme.solidButtonBackground,
-                marginBottom: '2rem'
-              }}>
-              ({model})
-            </h5>
-            <hr style={{ borderColor: 'black' }} />
-
+        <div style={starshipPageContainderStyles}>
+          <div style={starshipPageWrapperStyles}>
+            <h3 style={starshipPageTitle}>{name}</h3>
+            <h5 style={starshipPageSubtitleStyles}>({model})</h5>
+            <hr style={starshipPageHrStyles} />
             <Row>
               <Col md>
                 <StarshipCard starship={this.state.starship} />

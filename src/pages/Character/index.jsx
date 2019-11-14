@@ -17,26 +17,28 @@ class Character extends React.Component {
     this.setState({ character });
   }
   render() {
-    const { name } = this.state.character;
+    const name = this.state.character.name;
     const theme = this.props.theme.styles;
     const starships =
       this.state.character.starships && this.state.character.starships.edges;
+    const characterPageContainer = {
+      padding: '1rem',
+      paddingTop: '3rem',
+      backgroundColor: theme.defaultBackground,
+      paddingBottom: '8.5rem',
+      color: theme.defaultFontColor
+    };
+    const characterPateWrapper = { maxWidth: '800px', margin: 'auto' };
+    const characterPageTitle = {
+      fontFamily: 'SF Distant Galaxy',
+      color: theme.primaryHeadingFontColor,
+      marginBottom: '2rem'
+    };
     return (
-      <div
-        style={{
-          padding: '1rem',
-          paddingTop: '3rem',
-          backgroundColor: theme.defaultBackground,
-          paddingBottom: '8.5rem',
-          color: theme.defaultFontColor
-        }}>
-        <div style={{ maxWidth: '800px', margin: 'auto' }}>
+      <div style={characterPageContainer}>
+        <div style={characterPateWrapper}>
           <h3
-            style={{
-              fontFamily: 'SF Distant Galaxy',
-              color: theme.primaryHeadingFontColor,
-              marginBottom: '2rem'
-            }}>
+            style={characterPageTitle}>
             {name}
           </h3>
           <hr style={{ borderColor: 'black' }} />
