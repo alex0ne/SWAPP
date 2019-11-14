@@ -3,7 +3,7 @@ import Api from '../../services/Api';
 import { withTheme } from 'styled-components';
 import { Row, Col } from 'reactstrap';
 import CharacterCard from './CharacterCard';
-import StarShipsList from './StarShipsList';
+import StarshipsList from './StarshipsList';
 
 class Character extends React.Component {
   state = {
@@ -47,7 +47,7 @@ class Character extends React.Component {
               <CharacterCard character={this.state.character} />
             </Col>
             <Col md>
-              <StarShipsList starships={starships} />
+              <StarshipsList starships={starships} />
             </Col>
           </Row>
         </div>

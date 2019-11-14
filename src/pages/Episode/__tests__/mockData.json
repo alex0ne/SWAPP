@@ -1,0 +1,160 @@
+{
+    "data": {
+      "episode": {
+        "id": "films.4",
+        "episodeId": 1,
+        "title": "The Phantom Menace",
+        "openingCrawl": "Turmoil has engulfed the\r\nGalactic Republic. The taxation\r\nof trade routes to outlying star\r\nsystems is in dispute.\r\n\r\nHoping to resolve the matter\r\nwith a blockade of deadly\r\nbattleships, the greedy Trade\r\nFederation has stopped all\r\nshipping to the small planet\r\nof Naboo.\r\n\r\nWhile the Congress of the\r\nRepublic endlessly debates\r\nthis alarming chain of events,\r\nthe Supreme Chancellor has\r\nsecretly dispatched two Jedi\r\nKnights, the guardians of\r\npeace and justice in the\r\ngalaxy, to settle the conflict....",
+        "image": "https://images-na.ssl-images-amazon.com/images/I/81Vl2RQrZkL._SL1500_.jpg",
+        "director": "George Lucas",
+        "releaseDate": "1999-05-19",
+        "people": {
+          "edges": [
+            {
+              "node": {
+                "id": "people.10",
+                "name": "Obi-Wan Kenobi",
+                "image": "https://fsmedia.imgix.net/eb/d1/19/f1/9a64/4b2d/8471/d02314b53684/obi-wan-kenobi-in-the-original-star-wars.jpeg?crop=edges&fit=crop&auto=compress&h=1200&w=1200"
+              }
+            },
+            {
+              "node": {
+                "id": "people.11",
+                "name": "Anakin Skywalker",
+                "image": "https://upload.wikimedia.org/wikipedia/en/thumb/7/74/Anakin-Jedi.jpg/220px-Anakin-Jedi.jpg"
+              }
+            },
+            {
+              "node": {
+                "id": "people.16",
+                "name": "Jabba Desilijic Tiure",
+                "image": "https://i.pinimg.com/236x/1f/95/43/1f9543cc8dd60b77596451a5a514b69e--jabba-the-hutt-boba-fett.jpg"
+              }
+            },
+            {
+              "node": {
+                "id": "people.2",
+                "name": "C-3PO",
+                "image": "https://i.pinimg.com/originals/77/e7/b4/77e7b4f439371fae2aa28d542515b15b.jpg"
+              }
+            },
+            {
+              "node": {
+                "id": "people.20",
+                "name": "Yoda",
+                "image": "https://spacequotations.com/wp-content/uploads/2018/09/yoda-star-wars-quotes-1.jpg"
+              }
+            },
+            {
+              "node": {
+                "id": "people.21",
+                "name": "Palpatine",
+                "image": "https://fsmedia.imgix.net/2b/bd/d4/9c/d8b5/4fcd/84c2/fc4f8ca0c54c/ian-mcdiarmid-as-emperor-palpatine-in-return-of-the-jedi.png?crop=faces&fit=crop&auto=compress&h=1200&w=1200"
+              }
+            },
+            {
+              "node": {
+                "id": "people.3",
+                "name": "R2-D2",
+                "image": "https://s1.thcdn.com/productimg/1600/1600/11529461-2034512771291585.jpg"
+              }
+            },
+            {
+              "node": {
+                "id": "people.32",
+                "name": "Qui-Gon Jinn",
+                "image": null
+              }
+            },
+            {
+              "node": {
+                "id": "people.33",
+                "name": "Nute Gunray",
+                "image": null
+              }
+            },
+            {
+              "node": {
+                "id": "people.34",
+                "name": "Finis Valorum",
+                "image": null
+              }
+            },
+            {
+              "node": {
+                "id": "people.35",
+                "name": "Padmé Amidala",
+                "image": null
+              }
+            },
+            {
+              "node": {
+                "id": "people.36",
+                "name": "Jar Jar Binks",
+                "image": null
+              }
+            },
+            {
+              "node": {
+                "id": "people.37",
+                "name": "Roos Tarpals",
+                "image": null
+              }
+            },
+            {
+              "node": {
+                "id": "people.38",
+                "name": "Rugor Nass",
+                "image": null
+              }
+            },
+            {
+              "node": {
+                "id": "people.39",
+                "name": "Ric Olié",
+                "image": null
+              }
+            },
+            {
+              "node": {
+                "id": "people.40",
+                "name": "Watto",
+                "image": null
+              }
+            },
+            {
+              "node": {
+                "id": "people.41",
+                "name": "Sebulba",
+                "image": null
+              }
+            },
+            {
+              "node": {
+                "id": "people.42",
+                "name": "Quarsh Panaka",
+                "image": null
+              }
+            },
+            {
+              "node": {
+                "id": "people.43",
+                "name": "Shmi Skywalker",
+                "image": null
+              }
+            },
+            {
+              "node": {
+                "id": "people.44",
+                "name": "Darth Maul",
+                "image": null
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": true
+          }
+        }
+      }
+    }
+  }
