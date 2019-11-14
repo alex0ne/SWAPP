@@ -8,24 +8,26 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme } from './themes/light';
 import { darkTheme } from './themes/dark';
 
-
 function App() {
   const authService = new AuthService();
   const stored = localStorage.getItem('isDarkMode');
   const [isDarkMode, setIsDarkMode] = useState(
     stored === 'true' ? true : false
   );
-  
+
   const swapTheme = () => {
     setIsDarkMode(!isDarkMode);
     localStorage.setItem('isDarkMode', !isDarkMode);
   };
+  const appBackground = isDarkMode
+    ? darkTheme.defaultBackground
+    : lightTheme.defaultBackground;
+
   return (
     <ThemeProvider
       theme={{ styles: isDarkMode ? darkTheme : lightTheme, swapTheme }}>
-
       <Router>
-        <div className='App'>
+        <div className='App' style={{ backgroundColor: appBackground }}>
           {authService.isAuthenticated ? <Navigation /> : null}
           <Routes />
         </div>
