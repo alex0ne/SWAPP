@@ -11,11 +11,7 @@ import {
   Col
 } from 'reactstrap';
 
-<<<<<<< HEAD
-export default function CharactersList(props) {
-=======
 export default function CharactersList(props) {    
->>>>>>> 9604df307b5206632336aec9f3e94deaafa2c9bd
   const themeContext = useContext(ThemeContext);
   const theme = themeContext.styles;  
   const { people } = props.episode;
