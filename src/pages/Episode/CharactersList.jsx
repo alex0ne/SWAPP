@@ -11,9 +11,9 @@ import {
   Col
 } from 'reactstrap';
 
-export default function CharactersList(props) {    
+export default function CharactersList(props) {
   const themeContext = useContext(ThemeContext);
-  const theme = themeContext.styles;  
+  const theme = themeContext.styles;
   const { people } = props.episode;
   const cardImageStyles = { borderRadius: '8px' };
   const cardTitleStyles = { color: theme.primaryHeadingFontColor };
@@ -40,8 +40,6 @@ export default function CharactersList(props) {
     backgroundColor: theme.defaultBackground
   };
   const charactersCardStyles = {
-    // width: 254,
-    // margin: '0.5rem',
     borderRadius: '8px',
     borderColor: theme.cardBordercolor,
     backgroundColor: theme.cardBackground,
@@ -57,40 +55,35 @@ export default function CharactersList(props) {
       <section>
         <div style={charactersContainerStyles}>
           <div style={charactersWrapperStyles}>
-            <Row>
-              <Col>
-                {people &&
-                  people.edges.map(character => {
-                    const { id, image, name } = character.node;
-                    return (
-                      <Card key={id} className='charactersListCard' style={charactersCardStyles}>
-                        <Link
-                          style={charactersLinkStyles}
-                          to={`/characters/${id}`}>
-                          <Row className='no-gutters'>
-                            <Col md='4'>
-                              <CardImg
-                                style={cardImageStyles}
-                                top
-                                width='90%'
-                                src={image}
-                                alt={name}
-                              />
-                            </Col>
-                            <Col md='8'>
-                              <CardBody>
-                                <CardText style={cardTitleStyles}>
-                                  {name}
-                                </CardText>
-                              </CardBody>
-                            </Col>
-                          </Row>
-                        </Link>
-                      </Card>
-                    );
-                  })}
-              </Col>
-            </Row>
+            {people &&
+              people.edges.map(character => {
+                const { id, image, name } = character.node;
+                return (
+                  <Card
+                    key={id}
+                    className='charactersListCard'
+                    style={charactersCardStyles}>
+                    <Link style={charactersLinkStyles} to={`/characters/${id}`}>
+                      <Row className='no-gutters'>
+                        <Col md='4'>
+                          <CardImg
+                            style={cardImageStyles}
+                            top
+                            width='90%'
+                            src={image}
+                            alt={name}
+                          />
+                        </Col>
+                        <Col md='8'>
+                          <CardBody>
+                            <CardText style={cardTitleStyles}>{name}</CardText>
+                          </CardBody>
+                        </Col>
+                      </Row>
+                    </Link>
+                  </Card>
+                );
+              })}
           </div>
           {people && props.episode.people.pageInfo.hasNextPage && (
             <Button
