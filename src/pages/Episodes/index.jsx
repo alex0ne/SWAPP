@@ -26,7 +26,7 @@ class Episodes extends React.Component {
     const episodesWrapperStyles = {
       maxWidth: 1150,
       margin: 'auto',
-      paddingTop: '1rem',
+      paddingTop: '2rem',
       paddingBottom: '1rem',
       display: 'flex',
       flexWrap: 'wrap',
@@ -35,7 +35,6 @@ class Episodes extends React.Component {
     };
     const episodeCardStyles = {
       maxWidth: 300,
-      margin: 'auto',
       marginTop: '1rem',
       marginBottom: '1rem',
       borderRadius: '8px',
@@ -56,7 +55,10 @@ class Episodes extends React.Component {
       <div style={episodesContainerStyles}>
         <div style={episodesWrapperStyles}>
           {this.state.episodes.map(episode => (
-            <Card key={episode.node.id} style={episodeCardStyles}>
+            <Card
+              key={episode.node.id}
+              className='episodeCard'
+              style={episodeCardStyles}>
               <Link
                 style={episodeLinkStyles}
                 to={`/episodes/${episode.node.id}`}>

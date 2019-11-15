@@ -40,8 +40,8 @@ export default function CharactersList(props) {
     backgroundColor: theme.defaultBackground
   };
   const charactersCardStyles = {
-    width: 254,
-    margin: '0.5rem',
+    // width: 254,
+    // margin: '0.5rem',
     borderRadius: '8px',
     borderColor: theme.cardBordercolor,
     backgroundColor: theme.cardBackground,
@@ -63,7 +63,7 @@ export default function CharactersList(props) {
                   people.edges.map(character => {
                     const { id, image, name } = character.node;
                     return (
-                      <Card key={id} style={charactersCardStyles}>
+                      <Card key={id} className='charactersListCard' style={charactersCardStyles}>
                         <Link
                           style={charactersLinkStyles}
                           to={`/characters/${id}`}>
@@ -72,7 +72,7 @@ export default function CharactersList(props) {
                               <CardImg
                                 style={cardImageStyles}
                                 top
-                                width='100%'
+                                width='90%'
                                 src={image}
                                 alt={name}
                               />
