@@ -9,7 +9,8 @@ import Loading from '../../common/Loading';
 class Starship extends React.Component {
   state = {
     currentStarship: {},
-    chartData: []
+    chartData: [],
+    isLoading: true
   };
   api = new Api();
   async componentDidMount() {
@@ -39,7 +40,8 @@ class Starship extends React.Component {
 
     this.setState({
       currentStarship,
-      chartData
+      chartData,
+      isLoading: false
     });
   }
 
@@ -128,7 +130,9 @@ class Starship extends React.Component {
     };
     const starshipPageHrStyles = { borderColor: 'black' };
 
-    return this.state.chartData.length > 0 ? (
+    return this.state.isLoading ? (
+      <Loading />
+    ) : (
       <div>
         <div style={starshipPageContainderStyles}>
           <div style={starshipPageWrapperStyles}>
@@ -146,8 +150,6 @@ class Starship extends React.Component {
           </div>
         </div>
       </div>
-    ) : (
-      <Loading />
     );
   }
 }
