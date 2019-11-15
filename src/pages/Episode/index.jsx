@@ -4,10 +4,12 @@ import { withTheme } from 'styled-components';
 import EpisodeHeader from './EpisodeHeader';
 import EpisodeDescription from './EpisodeDescription';
 import CharactersList from './CharactersList';
+import Loading from '../../common/Loading';
 
 class Episode extends React.Component {
   state = {
-    episode: {}
+    episode: {},
+    isLoading: true
   };
 
   api = new Api();
@@ -17,7 +19,7 @@ class Episode extends React.Component {
       window.location.pathname.length - 7
     );
     const episode = await this.api.getEpisode(id);
-    this.setState({ episode });
+    this.setState({ episode, isLoading: false });
   }
 
   loadMoreCharacters = async () => {
@@ -30,7 +32,7 @@ class Episode extends React.Component {
       currentCharactersCount
     );
     this.setState({ episode });
-  }
+  };
 
   render() {
     const theme = this.props.theme.styles;
@@ -40,7 +42,9 @@ class Episode extends React.Component {
       padding: '1rem'
     };
 
-    return (
+    return this.state.isLoading ? (
+      <Loading />
+    ) : (
       <div style={episodeContainerStyles}>
         <EpisodeHeader episode={this.state.episode} />
         <EpisodeDescription episode={this.state.episode} />

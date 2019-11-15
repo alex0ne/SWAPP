@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Api from '../../services/Api';
 import { withTheme } from 'styled-components';
+import Loading from '../../common/Loading';
 import {
   Card,
   CardImg,
@@ -14,12 +15,13 @@ import {
 
 class Characters extends React.Component {
   state = {
-    characters: {}
+    characters: {},
+    isLoading: true
   };
   api = new Api();
   async componentDidMount() {
     const characters = await this.api.getCharacters();
-    this.setState({ characters });
+    this.setState({ characters, isLoading: false });
   }
   async loadMoreCharacters() {
     const currentCharactersCount = this.state.characters.edges.length;
@@ -71,7 +73,9 @@ class Characters extends React.Component {
       fontSize: '0.9rem',
       marginBottom: '7px'
     };
-    return (
+    return this.state.isLoading ? (
+      <Loading />
+    ) : (
       <div style={charactersContainerStyles}>
         <div style={charactersWrapperStyles}>
           {characters &&

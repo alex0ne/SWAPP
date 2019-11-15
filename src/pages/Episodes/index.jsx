@@ -2,19 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Api from '../../services/Api';
 import { withTheme } from 'styled-components';
-
+import Loading from '../../common/Loading';
 import { Card, CardImg, CardTitle, CardText, CardBody } from 'reactstrap';
 
 class Episodes extends React.Component {
   state = {
-    episodes: []
+    episodes: [],
+    isLoading: true
   };
 
   api = new Api();
 
   async componentDidMount() {
     const episodes = await this.api.getEpisodes();
-    this.setState({ episodes });
+    this.setState({ episodes, isLoading: false });
   }
 
   render() {
@@ -48,7 +49,10 @@ class Episodes extends React.Component {
       fontFamily: 'SF Distant Galaxy'
     };
     const cardTextStyles = { color: theme.defaultFontColor };
-    return (
+
+    return this.state.isLoading ? (
+      <Loading />
+    ) : (
       <div style={episodesContainerStyles}>
         <div style={episodesWrapperStyles}>
           {this.state.episodes.map(episode => (
